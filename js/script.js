@@ -44,9 +44,27 @@ const loadDetails = id => {
     .then(data => displayDetails(data));
 }
 
-const displayDetails = (data) => {    
+const displayDetails = (data) => {
     const detailsContainer = document.getElementById('details');
-    detailsContainer.innerHTML = `
+    if (data.data.others == null) {
+        detailsContainer.innerHTML = `
+    <div class="my-3">
+    <div class="">
+        <img class="w-25" src="${data.data.image}" alt="">
+    </div>
+    <h6 class="my-1">Release-Date: ${data.data.releaseDate}</h6>
+    <h4 class="text-success my-2">Name: ${data.data.name}</h4>
+    <h5 class="text-primary">Company: ${data.data.brand}</h5>  
+      <h6>Storage: ${data.data.mainFeatures.storage}</h6> 
+      <h6>Display-size: ${data.data.mainFeatures.displaySize}</h6>    
+      <h6>Chip: ${data.data.mainFeatures.chipSet}</h6>
+      <h6 class="text-primary">Sensors: ${data.data.mainFeatures.sensors}</h6>
+     </div>
+    `
+        return
+    }
+    else {
+        detailsContainer.innerHTML = `
     <div class="my-3">
     <div class="">
         <img class="w-25" src="${data.data.image}" alt="">
@@ -69,9 +87,9 @@ const displayDetails = (data) => {
       </ul>          
       </h5>
      </div>
-    `
-    
-   ;
+    ` ;
+    }
    
+    
     
 }
