@@ -8,9 +8,18 @@ const url = `https://openapi.programming-hero.com/api/phones?search=${searchValu
 //   console.log(url);
     fetch(url)
     .then(response => response.json())
-    .then(data => displayPhone(data.data));
+    .then(data => {
+        if (searchValue == "" || data.data.length === 0) {         
+            document.getElementById("err-msg").style.display = "block";
+            document.getElementById('spinner').style.display = "none";
+      } else {
+            document.getElementById("err-msg").style.display = "none";
+            document.getElementById('spinner').style.display = "block";
+        displayPhone(data.data);
+       
+      }
+    });
 };
-
 
 const displayPhone = (phones) => {
     const phoneLength = phones.length;
