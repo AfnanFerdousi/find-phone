@@ -13,7 +13,10 @@ const url = `https://openapi.programming-hero.com/api/phones?search=${searchValu
 
 
 const displayPhone = (phones) => {
-    phones.forEach(phone => {       
+    const phoneLength = phones.length;
+    console.log(phoneLength);
+    phones.slice(0,20).forEach(phone => {    
+        
         const parent = document.getElementById('phone-container')
         let div = document.createElement('div')
         div.classList.add('col-md-4')
@@ -30,7 +33,7 @@ const displayPhone = (phones) => {
           `;
         parent.appendChild(div)
     });
-        document.getElementById('spinner').style.display = 'none';
+    document.getElementById('spinner').style.display = 'none';
 
 }
 const loadDetails = id => {
@@ -55,7 +58,16 @@ const displayDetails = (data) => {
       <h6>Display-size: ${data.data.mainFeatures.displaySize}</h6>    
       <h6>Chip: ${data.data.mainFeatures.chipSet}</h6>
       <h6 class="text-primary">Sensors: ${data.data.mainFeatures.sensors}</h6>
-      <h6 class="text-warning">Others: ${data.data.others.WLAN}</h6>
+      <h5 class="text-warning">Others:
+      <ul>
+          <h6 class="text-primary">WLAN: ${data.data.others.WLAN}</h6>
+          <h6 class="text-primary">Bluetooth: ${data.data.others.Bluetooth}</h6>
+          <h6 class="text-primary">GPS: ${data.data.others.GPS}</h6>
+          <h6 class="text-primary">NFC: ${data.data.others.NFC}</h6>
+          <h6 class="text-primary">Radio: ${data.data.others.Radio}</h6>
+          <h6 class="text-primary">USB: ${data.data.others.USB}</h6>
+      </ul>          
+      </h5>
      </div>
     `
     
